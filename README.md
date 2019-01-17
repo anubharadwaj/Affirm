@@ -16,7 +16,7 @@ Technical Details:
 - Broadcast receiver to detect network state
 - Repository class to switch between the 2 data sources( from network vs DB)
 
- ![](Flickr.gif)
+ ![VideoWalkThrough](Flickr.gif)
 
 
 
