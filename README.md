@@ -7,8 +7,8 @@ Implemented features:
 - Offline mode
 
 Technical Details:
-- Min SDK Version 21
-- The app used MVVM design pattern
+- Min SDK Version 5.1/API level 22
+- The app uses MVVM design pattern
 - It also uses the new Android architecture components:(https://developer.android.com/jetpack/docs/guide)
   - ViewModel
   - Room
