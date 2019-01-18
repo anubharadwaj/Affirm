@@ -29,7 +29,7 @@ public class InternetConnectorReceiver  extends BroadcastReceiver {
             }
         } else {
             Toast.makeText(context, "Network is disconnected", Toast.LENGTH_LONG).show();
-            FlickrRepository.getInstance().getPhotos(true,"");
+            FlickrRepository.getInstance().getPhotos(false,"");
         }
 
     }
