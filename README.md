@@ -12,6 +12,7 @@ Technical Details:
 - It also uses the new Android architecture components:(https://developer.android.com/jetpack/docs/guide)
   - ViewModel
   - Room
+  - LiveData
   - Paging
 - Broadcast receiver to detect network state
 - Repository class to switch between the 2 data sources( from network vs DB)
