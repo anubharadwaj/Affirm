@@ -1,5 +1,7 @@
 package com.example.anubharadwaj.myapplication.view_models;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.paging.PagedList;
@@ -11,11 +13,12 @@ public class FlickrPhotoFeedViewModel extends ViewModel {
 
     public LiveData<PagedList<PhotoDetails>> photoPagedList;
 
-    public FlickrPhotoFeedViewModel(String query) {
-
-        photoPagedList = FlickrRepository.getInstance().getPhotos(true, query);
+    public FlickrPhotoFeedViewModel(FlickrRepository flickrRepository, String query) {
+        photoPagedList = flickrRepository.getPhotos(true, query);
 
     }
 
-
+    public LiveData<PagedList<PhotoDetails>> getPhotoPagedList() {
+        return photoPagedList;
+    }
 }

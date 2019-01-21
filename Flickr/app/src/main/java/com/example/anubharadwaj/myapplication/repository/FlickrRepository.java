@@ -16,21 +16,17 @@ import com.example.anubharadwaj.myapplication.utils.Utility;
 public class FlickrRepository {
     private static String query="";
 
-    private static FlickrRepository mInstance;
+    private static FlickrRepository mInstance = new FlickrRepository();
     public LiveData<PagedList<PhotoDetails>> photoPagedList;
     LiveData<PageKeyedDataSource<Integer, PhotoDetails>> liveDataSourceFromNetwork;
     LiveData<PageKeyedDataSource<Integer, PhotoDetails>> liveDataSourceFromDB;
 
     private final LiveData<PagedList<PhotoDetails>> photos = new MediatorLiveData<>();
 
-    private FlickrRepository(String query) {
-       this.query=query;
+    private FlickrRepository() {
     }
 
     public static synchronized FlickrRepository getInstance(){
-        if(mInstance == null){
-            mInstance = new FlickrRepository(query);
-        }
         return mInstance;
     }
 
@@ -53,5 +49,4 @@ public class FlickrRepository {
         }
         return photoPagedList;
     }
-
 }

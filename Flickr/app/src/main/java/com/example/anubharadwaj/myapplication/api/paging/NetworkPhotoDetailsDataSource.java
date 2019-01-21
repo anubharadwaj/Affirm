@@ -42,8 +42,10 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
                 executor.execute(() -> {
                     if (response.body() != null && response.isSuccessful()) {
                         FlickrPhotoResponse items = response.body();
-                        photoDao.save(items.getPhotos().getPhoto());
-                        callback.onResult(response.body().getPhotos().getPhoto(), null, items.getPhotos().getPage() + 1);
+                        if(items.getPhotos()!=null) {
+                            photoDao.save(items.getPhotos().getPhoto());
+                            callback.onResult(response.body().getPhotos().getPhoto(), null, items.getPhotos().getPage() + 1);
+                        }
 
                     }
                 });
@@ -67,9 +69,11 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
                 executor.execute(() -> {
                     if (response.body() != null && response.isSuccessful()) {
                         FlickrPhotoResponse items = response.body();
-                        photoDao.save(items.getPhotos().getPhoto());
-                        Integer key = (params.key > 1) ? params.key - 1 : null;
-                        callback.onResult(response.body().getPhotos().getPhoto(), key);
+                        if(items.getPhotos()!=null) {
+                            photoDao.save(items.getPhotos().getPhoto());
+                            Integer key = (params.key > 1) ? params.key - 1 : null;
+                            callback.onResult(response.body().getPhotos().getPhoto(), key);
+                        }
                     }
                 });
             }
@@ -91,8 +95,10 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
             public void onResponse(Call<FlickrPhotoResponse> call, Response<FlickrPhotoResponse> response) {
                 executor.execute(() -> {
                     if (response.body() != null && response.isSuccessful()) {
-                        Integer key = (params.key > 1) ? params.key +1 : null;
-                        callback.onResult(response.body().getPhotos().getPhoto(), key);
+                        if(response.body().getPhotos()!=null) {
+                            Integer key = (params.key > 1) ? params.key + 1 : null;
+                            callback.onResult(response.body().getPhotos().getPhoto(), key);
+                        }
 
                     }
                 });

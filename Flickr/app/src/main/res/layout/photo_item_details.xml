@@ -9,18 +9,19 @@
         android:layout_height="300dp"
         android:layout_alignParentTop="true">
 
-        <android.support.v4.widget.ContentLoadingProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:indeterminate="true"
-            android:visibility="invisible"
-            android:id="@+id/pbLoading"/>
-
         <ImageView
             android:id="@+id/ivPhoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"/>
+
+       <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:visibility="gone"
+            android:progressDrawable="@drawable/custom_progressbar"
+            android:id="@+id/pbLoading"/>
 
     </android.support.v7.widget.CardView>
 

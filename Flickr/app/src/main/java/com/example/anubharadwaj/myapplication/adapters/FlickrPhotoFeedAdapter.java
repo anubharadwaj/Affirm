@@ -24,6 +24,7 @@ import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;
 
 public class FlickrPhotoFeedAdapter extends PagedListAdapter<PhotoDetails,FlickrPhotoFeedAdapter.FlickrPhotoFeedHolder> {
     private Context context;
+    private ClickListener clickListener;
 
     public FlickrPhotoFeedAdapter() {
         super(DIFF_CALLBACK);
@@ -41,6 +42,10 @@ public class FlickrPhotoFeedAdapter extends PagedListAdapter<PhotoDetails,Flickr
                     oldItem.getUrlS().equals(newItem.getUrlS());
         }
     };
+
+    public void setListener(ClickListener clickListener){
+        this.clickListener = clickListener;
+    }
 
 
     @NonNull
@@ -76,7 +81,7 @@ public class FlickrPhotoFeedAdapter extends PagedListAdapter<PhotoDetails,Flickr
     }
 
 
-    class FlickrPhotoFeedHolder extends RecyclerView.ViewHolder {
+    class FlickrPhotoFeedHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView ivPhoto;
         private ProgressBar pbLoading;
 
@@ -85,7 +90,19 @@ public class FlickrPhotoFeedAdapter extends PagedListAdapter<PhotoDetails,Flickr
             super(itemView);
             ivPhoto = itemView.findViewById(R.id.ivPhoto);
             pbLoading = itemView.findViewById(R.id.pbLoading);
+            itemView.setOnClickListener(this);
 
         }
+
+        @Override
+        public void onClick(View v) {
+            if(clickListener != null){
+                clickListener.itemClicked(itemView, getAdapterPosition());
+            }
+        }
+    }
+
+    public interface ClickListener{
+        void itemClicked(View view, int position);
     }
 }
