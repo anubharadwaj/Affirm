@@ -1,9 +1,9 @@
 package com.example.anubharadwaj.myapplication.repository;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.paging.LivePagedListBuilder;
-import android.arch.paging.PageKeyedDataSource;
-import android.arch.paging.PagedList;
+import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PageKeyedDataSource;
+import androidx.paging.PagedList;
 import android.os.AsyncTask;
 import com.example.anubharadwaj.myapplication.api.paging.NetworkPhotoDetailsDataSource;
 import com.example.anubharadwaj.myapplication.api.paging.NetworkPhotoDetailsDataSourceFactory;

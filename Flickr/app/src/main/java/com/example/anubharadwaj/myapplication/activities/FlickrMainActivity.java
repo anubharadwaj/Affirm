@@ -2,10 +2,10 @@ package com.example.anubharadwaj.myapplication.activities;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 import com.example.anubharadwaj.myapplication.R;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoFeedFragment;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoSearchFragment;

@@ -1,8 +1,8 @@
 package com.example.anubharadwaj.myapplication.view_models;
 
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.paging.PagedList;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
 import com.example.anubharadwaj.myapplication.FlickrApplication;
 import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;
 import com.example.anubharadwaj.myapplication.repository.FlickrRepository;

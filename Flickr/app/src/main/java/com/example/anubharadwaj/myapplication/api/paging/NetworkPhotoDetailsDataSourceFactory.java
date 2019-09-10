@@ -1,8 +1,8 @@
 package com.example.anubharadwaj.myapplication.api.paging;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.paging.DataSource;
-import android.arch.paging.PageKeyedDataSource;
+import androidx.lifecycle.MutableLiveData;
+import androidx.paging.DataSource;
+import androidx.paging.PageKeyedDataSource;
 import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;
 
 public class NetworkPhotoDetailsDataSourceFactory extends DataSource.Factory {

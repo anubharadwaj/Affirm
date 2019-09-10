@@ -1,7 +1,7 @@
 package com.example.anubharadwaj.myapplication.api.paging;
 
-import android.arch.paging.PageKeyedDataSource;
-import android.support.annotation.NonNull;
+import androidx.paging.PageKeyedDataSource;
+import androidx.annotation.NonNull;
 import com.example.anubharadwaj.myapplication.api.FlickrRetrofitClient;
 import com.example.anubharadwaj.myapplication.database.FlickrPhotoDatabase;
 import com.example.anubharadwaj.myapplication.database.dao.FlickrPhotoDao;

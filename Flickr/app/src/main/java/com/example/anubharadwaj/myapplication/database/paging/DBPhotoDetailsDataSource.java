@@ -1,8 +1,8 @@
 package com.example.anubharadwaj.myapplication.database.paging;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.paging.PageKeyedDataSource;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.paging.PageKeyedDataSource;
+import androidx.annotation.NonNull;
 import com.example.anubharadwaj.myapplication.database.FlickrPhotoDatabase;
 import com.example.anubharadwaj.myapplication.database.dao.FlickrPhotoDao;
 import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;

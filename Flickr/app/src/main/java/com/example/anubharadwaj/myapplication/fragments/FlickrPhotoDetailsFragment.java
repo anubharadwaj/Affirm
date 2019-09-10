@@ -3,8 +3,8 @@ package com.example.anubharadwaj.myapplication.fragments;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +21,6 @@ import butterknife.ButterKnife;
 
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FlickrPhotoDetailsFragment extends Fragment {
 
     String url;
@@ -48,7 +45,7 @@ public class FlickrPhotoDetailsFragment extends Fragment {
 
         if(url!=null || !url.isEmpty()){
             progressBar.setVisibility(View.VISIBLE);
-            Glide.with(this)
+            Glide.with(getActivity())
                     .load(url)
                     .listener(new RequestListener<Drawable>() {
                         @Override
