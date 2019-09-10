@@ -10,7 +10,6 @@ public class DBPhotoDetailsDataSourceFactory extends DataSource.Factory {
 
     private MutableLiveData<PageKeyedDataSource<Integer, PhotoDetails>> itemLiveDataSource = new MutableLiveData<>();
 
-
     @Override
     public DataSource create() {
         DBPhotoDetailsDataSource photoDataSourceFromDB = new DBPhotoDetailsDataSource();

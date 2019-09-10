@@ -107,9 +107,6 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
             public void onFailure(Call<FlickrPhotoResponse> call, Throwable t) {
             }
         });
-
-
-
     }
 }
 

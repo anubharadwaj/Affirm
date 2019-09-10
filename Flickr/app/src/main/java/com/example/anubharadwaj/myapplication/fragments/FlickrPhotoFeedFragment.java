@@ -23,11 +23,8 @@ import com.example.anubharadwaj.myapplication.view_models.FlickrPhotoFeedViewMod
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FlickrPhotoFeedFragment extends Fragment implements FlickrPhotoFeedAdapter.ClickListener {
-    // FOR DESIGN
+
     @BindView(R.id.rv)
     RecyclerView rv;
 

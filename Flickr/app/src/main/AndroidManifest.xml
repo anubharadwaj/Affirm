@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.FlickrMainActivity">
+        <activity android:name=".activities.FlickrMainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,7 +28,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activities.FlickrPhotoDetailsActivity"></activity>
+        <activity android:name=".activities.FlickrPhotoDetailsActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

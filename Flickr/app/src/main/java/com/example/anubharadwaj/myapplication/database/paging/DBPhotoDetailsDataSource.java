@@ -19,7 +19,7 @@ public class DBPhotoDetailsDataSource extends PageKeyedDataSource<Integer,PhotoD
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, PhotoDetails> callback) {
         LiveData<List<PhotoDetails>> photos = photoDao.loadPhotos();
-        if(photos.getValue().size() != 0) {
+        if(photos != null && photos.getValue().size() != 0) {
             callback.onResult(photos.getValue(), 0, 1);
         }
     }
@@ -31,8 +31,6 @@ public class DBPhotoDetailsDataSource extends PageKeyedDataSource<Integer,PhotoD
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, PhotoDetails> callback) {
-
-
     }
 }
 
