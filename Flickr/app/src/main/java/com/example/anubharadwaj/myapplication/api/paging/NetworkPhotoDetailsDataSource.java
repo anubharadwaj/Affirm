@@ -2,17 +2,15 @@ package com.example.anubharadwaj.myapplication.api.paging;
 
 import android.arch.paging.PageKeyedDataSource;
 import android.support.annotation.NonNull;
-
 import com.example.anubharadwaj.myapplication.api.FlickrRetrofitClient;
 import com.example.anubharadwaj.myapplication.database.FlickrPhotoDatabase;
 import com.example.anubharadwaj.myapplication.database.dao.FlickrPhotoDao;
 import com.example.anubharadwaj.myapplication.database.entity.FlickrPhotoResponse;
 import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;
+import com.example.anubharadwaj.myapplication.repository.FlickrRepository;
 import com.example.anubharadwaj.myapplication.utils.Constants;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,11 +21,13 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
     private FlickrRetrofitClient retrofitClient;
     private final FlickrPhotoDao photoDao;
     private String query;
+    private FlickrRepository repository;
 
     public NetworkPhotoDetailsDataSource(String query) {
         FlickrPhotoDatabase flickrPhotoDatabase = FlickrPhotoDatabase.getInstance();
         this.photoDao = flickrPhotoDatabase.photoDao();
         this.query = query;
+        this.repository = new FlickrRepository();
     }
 
 
@@ -43,10 +43,9 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
                     if (response.body() != null && response.isSuccessful()) {
                         FlickrPhotoResponse items = response.body();
                         if(items.getPhotos()!=null) {
-                            photoDao.save(items.getPhotos().getPhoto());
+                            repository.savePhotos(items.getPhotos().getPhoto());
                             callback.onResult(response.body().getPhotos().getPhoto(), null, items.getPhotos().getPage() + 1);
                         }
-
                     }
                 });
             }
@@ -55,7 +54,7 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
             public void onFailure(Call<FlickrPhotoResponse> call, Throwable t) {
             }
         });
-    }
+    };
 
 
     @Override
@@ -70,7 +69,7 @@ public class NetworkPhotoDetailsDataSource extends PageKeyedDataSource<Integer,P
                     if (response.body() != null && response.isSuccessful()) {
                         FlickrPhotoResponse items = response.body();
                         if(items.getPhotos()!=null) {
-                            photoDao.save(items.getPhotos().getPhoto());
+                            repository.savePhotos(items.getPhotos().getPhoto());
                             Integer key = (params.key > 1) ? params.key - 1 : null;
                             callback.onResult(response.body().getPhotos().getPhoto(), key);
                         }

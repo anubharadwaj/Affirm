@@ -9,7 +9,6 @@ public class Constants {
     public static final String NOJSONCALLBACK="1";
     public static final String END_POINT="services/rest/?method="+ METHOD + "&api_key=" + API_KEY;
 
-
     public static final String PHOTO_URL_KEY = "photo_url";
     public static final String QUERY_KEY = "query";
 }

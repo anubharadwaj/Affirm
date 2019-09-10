@@ -1,7 +1,6 @@
 package com.example.anubharadwaj.myapplication.fragments;
 
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
@@ -11,21 +10,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import com.example.anubharadwaj.myapplication.R;
 import com.example.anubharadwaj.myapplication.adapters.FlickrPhotoFeedAdapter;
 import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;
-import com.example.anubharadwaj.myapplication.repository.FlickrRepository;
 import com.example.anubharadwaj.myapplication.utils.Constants;
 import com.example.anubharadwaj.myapplication.view_models.FlickrPhotoFeedViewModel;
 import com.example.anubharadwaj.myapplication.view_models.FlickrPhotoFeedViewModelFactory;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -49,6 +43,7 @@ public class FlickrPhotoFeedFragment extends Fragment implements FlickrPhotoFeed
 
     private FlickrPhotoFeedAdapter adapter;
     PagedList<PhotoDetails> photosResult;
+
     public FlickrPhotoFeedFragment() {
         // Required empty public constructor
     }
@@ -65,9 +60,20 @@ public class FlickrPhotoFeedFragment extends Fragment implements FlickrPhotoFeed
         adapter = new FlickrPhotoFeedAdapter();
         recyclerView.setAdapter(adapter);
         adapter.setListener(this);
-        if (this.getArguments() != null) {
-            getPhotoFeed(getArguments().getString(Constants.QUERY_KEY));
-        }
+
+        FlickrPhotoFeedViewModelFactory factory = new FlickrPhotoFeedViewModelFactory(getArguments().getString(Constants.QUERY_KEY));
+        FlickrPhotoFeedViewModel photoDetailsViewModel = ViewModelProviders.of(this, factory).get(FlickrPhotoFeedViewModel.class);
+        photoDetailsViewModel.loadPhotos().observe(this, new Observer<PagedList<PhotoDetails>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<PhotoDetails> photos) {
+                progressBar.setVisibility(View.GONE);
+                if (photos != null) {
+                    photosResult = photos;
+                    adapter.submitList(photos);
+                }
+            }
+        });
+
         return view;
     }
 
@@ -80,26 +86,6 @@ public class FlickrPhotoFeedFragment extends Fragment implements FlickrPhotoFeed
             throw new ClassCastException(context.toString()
                     + " must implement MyListFragment.OnItemSelectedListener");
         }
-    }
-
-
-    private void getPhotoFeed(String query) {
-        FlickrRepository flickrRepository = FlickrRepository.getInstance();
-        LiveData<PagedList<PhotoDetails>> photoPagedList = flickrRepository.getPhotos(true, query);
-        FlickrPhotoFeedViewModelFactory factory = new FlickrPhotoFeedViewModelFactory(flickrRepository, query);
-        FlickrPhotoFeedViewModel viewModel = ViewModelProviders.of(this, factory).get(FlickrPhotoFeedViewModel.class);
-
-        FlickrRepository.getInstance().photoPagedList.observe(this, new Observer<PagedList<PhotoDetails>>() {
-            @Override
-            public void onChanged(@Nullable PagedList<PhotoDetails> photos) {
-                progressBar.setVisibility(View.GONE);
-                if (photos != null) {
-                    photosResult = photos;
-                    adapter.submitList(photos);
-                }
-            }
-        });
-
     }
 
 

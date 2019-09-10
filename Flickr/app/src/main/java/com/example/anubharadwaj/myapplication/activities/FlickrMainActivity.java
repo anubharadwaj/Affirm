@@ -6,10 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.support.v7.widget.SearchView;
-import android.view.View;
-
 import com.example.anubharadwaj.myapplication.R;
-import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoDetailsFragment;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoFeedFragment;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoSearchFragment;
 import com.example.anubharadwaj.myapplication.utils.Constants;

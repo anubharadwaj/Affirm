@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
-
 import com.example.anubharadwaj.myapplication.repository.FlickrRepository;
 
 
 public class InternetConnectorReceiver  extends BroadcastReceiver {
+    private FlickrRepository flickrRepository;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -22,16 +22,14 @@ public class InternetConnectorReceiver  extends BroadcastReceiver {
         if (isConnected) {
             try {
                 Toast.makeText(context, "Network is connected", Toast.LENGTH_LONG).show();
-                FlickrRepository.getInstance().getPhotos(true,"");
+                flickrRepository.getPhotos(true,"");
                 // entry point of data
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             Toast.makeText(context, "Network is disconnected", Toast.LENGTH_LONG).show();
-            FlickrRepository.getInstance().getPhotos(false,"");
+           flickrRepository.getPhotos(false,"");
         }
-
     }
-
 }

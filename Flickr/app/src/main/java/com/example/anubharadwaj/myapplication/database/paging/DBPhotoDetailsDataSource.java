@@ -1,15 +1,12 @@
 package com.example.anubharadwaj.myapplication.database.paging;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.paging.PageKeyedDataSource;
 import android.support.annotation.NonNull;
-
-import com.example.anubharadwaj.myapplication.api.FlickrRetrofitClient;
 import com.example.anubharadwaj.myapplication.database.FlickrPhotoDatabase;
 import com.example.anubharadwaj.myapplication.database.dao.FlickrPhotoDao;
 import com.example.anubharadwaj.myapplication.database.entity.PhotoDetails;
-
 import java.util.List;
-
 
 public class DBPhotoDetailsDataSource extends PageKeyedDataSource<Integer,PhotoDetails> {
     private final FlickrPhotoDao photoDao;
@@ -19,12 +16,11 @@ public class DBPhotoDetailsDataSource extends PageKeyedDataSource<Integer,PhotoD
         this.photoDao = flickrPhotoDatabase.photoDao();
     }
 
-
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, PhotoDetails> callback) {
-        List<PhotoDetails> photos = photoDao.loadPhotos();
-        if(photos.size() != 0) {
-            callback.onResult(photos, 0, 1);
+        LiveData<List<PhotoDetails>> photos = photoDao.loadPhotos();
+        if(photos.getValue().size() != 0) {
+            callback.onResult(photos.getValue(), 0, 1);
         }
     }
 

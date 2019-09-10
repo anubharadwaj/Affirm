@@ -5,11 +5,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.example.anubharadwaj.myapplication.R;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoDetailsFragment;
 import com.example.anubharadwaj.myapplication.utils.Constants;
-
 import butterknife.ButterKnife;
 
 public class FlickrPhotoDetailsActivity extends AppCompatActivity {

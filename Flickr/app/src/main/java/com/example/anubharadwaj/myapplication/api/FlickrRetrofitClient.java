@@ -1,7 +1,6 @@
 package com.example.anubharadwaj.myapplication.api;
 
 import com.example.anubharadwaj.myapplication.utils.Constants;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
