@@ -16,6 +16,13 @@ Technical Details:
   - Paging
 - Broadcast receiver to detect network state
 - Repository class to switch between the 2 data sources( from network vs DB)
+- Project was migrated to Androidx
+
+Future improvements:
+
+Write-Up
+  - Handle configuration changes and not locking screen rotation
+  - Add a Snackbar to show network state change instead of a Toast message
 
  ![VideoWalkThrough](Flickr.gif)
 
