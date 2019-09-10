@@ -45,7 +45,7 @@ public class FlickrPhotoDetailsFragment extends Fragment {
 
         if(url!=null || !url.isEmpty()){
             progressBar.setVisibility(View.VISIBLE);
-            Glide.with(getActivity())
+            Glide.with(this)
                     .load(url)
                     .listener(new RequestListener<Drawable>() {
                         @Override

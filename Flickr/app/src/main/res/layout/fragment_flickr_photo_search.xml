@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/flickr"
+    android:background="@drawable/flickr_background"
     tools:context=".fragments.FlickrPhotoSearchFragment">
 
 </FrameLayout>

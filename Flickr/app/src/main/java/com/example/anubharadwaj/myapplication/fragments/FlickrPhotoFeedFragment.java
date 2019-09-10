@@ -66,7 +66,6 @@ public class FlickrPhotoFeedFragment extends Fragment implements FlickrPhotoFeed
         photoDetailsViewModel.loadPhotos().observe(this, new Observer<PagedList<PhotoDetails>>() {
             @Override
             public void onChanged(@Nullable PagedList<PhotoDetails> photos) {
-                progressBar.setVisibility(View.GONE);
                 if (photos != null) {
                     photosResult = photos;
                     adapter.submitList(photos);
