@@ -19,8 +19,6 @@ Technical Details:
 - Project was migrated to Androidx
 
 Future improvements:
-
-Write-Up
   - Handle configuration changes and not locking screen rotation
   - Add a Snackbar to show network state change instead of a Toast message
 
