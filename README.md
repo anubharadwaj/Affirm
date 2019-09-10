@@ -21,6 +21,7 @@ Technical Details:
 Future improvements:
   - Handle configuration changes and not locking screen rotation
   - Add a Snackbar to show network state change instead of a Toast message
+  - Show internet connected only after it was disconnected previously
 
  ![VideoWalkThrough](Flickr.gif)
 
