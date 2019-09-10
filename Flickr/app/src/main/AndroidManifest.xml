@@ -22,12 +22,6 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".api.network.InternetConnectorReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-
         <activity android:name=".activities.FlickrPhotoDetailsActivity"
             android:screenOrientation="portrait">
         </activity>

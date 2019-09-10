@@ -1,12 +1,16 @@
 package com.example.anubharadwaj.myapplication.activities;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import androidx.appcompat.widget.SearchView;
 import com.example.anubharadwaj.myapplication.R;
+import com.example.anubharadwaj.myapplication.api.network.InternetConnectorReceiver;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoFeedFragment;
 import com.example.anubharadwaj.myapplication.fragments.FlickrPhotoSearchFragment;
 import com.example.anubharadwaj.myapplication.utils.Constants;
@@ -15,12 +19,16 @@ import butterknife.ButterKnife;
 
 public class FlickrMainActivity extends AppCompatActivity implements FlickrPhotoFeedFragment.OnItemSelectedListener{
     SearchView searchView;
+    InternetConnectorReceiver internetConnectorReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flickr_main);
         ButterKnife.bind(this);
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        internetConnectorReceiver = new InternetConnectorReceiver();
+        registerReceiver(internetConnectorReceiver, intentFilter);
         showSearchFragment();
     }
 
@@ -50,7 +58,6 @@ public class FlickrMainActivity extends AppCompatActivity implements FlickrPhoto
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-               // progressBar.setVisibility(View.VISIBLE);
                 showFeedFragment(query);
                 searchView.clearFocus();
                 return true;
@@ -71,5 +78,14 @@ public class FlickrMainActivity extends AppCompatActivity implements FlickrPhoto
         bundle.putString(Constants.PHOTO_URL_KEY, url);
         i.putExtras(bundle);
         startActivity(i);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (internetConnectorReceiver != null) {
+            unregisterReceiver(internetConnectorReceiver);
+            internetConnectorReceiver = null;
+        }
     }
 }
